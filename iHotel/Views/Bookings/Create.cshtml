@@ -1,0 +1,102 @@
+﻿@model FIT5032_Assign1_v6.Models.Booking
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Booking</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+
+        <div style="float:left;margin-right:10px" class="col-md-2">
+            @Html.LabelFor(model => model.From_date, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.EditorFor(model => model.From_date, new { htmlAttributes = new { @class = "datepicker" } })
+            @Html.ValidationMessageFor(model => model.From_date, "", new { @class = "text-danger" })
+        </div>
+
+        <div style="float:left" class="col-md-2">
+
+            @Html.LabelFor(model => model.To_date, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.EditorFor(model => model.To_date, new { htmlAttributes = new { @class = "datepicker" } })
+            @Html.ValidationMessageFor(model => model.To_date, "", new { @class = "text-danger" })
+        </div>
+        @section datePicker{
+            <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+            <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+            <script>
+                $(function () {
+                    $(".datepicker").datepicker(
+                        {
+                            dateFormat: "yy-mm-dd",
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange: "2019:2029"
+                        }
+                    );
+                });
+            </script>
+        }
+    </div>
+
+ 
+    <div class="form-group">
+        @Html.LabelFor(model => model.Adult_Number, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Adult_Number, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Adult_Number, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Children_Number, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Children_Number, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Children_Number, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RoomInforId, "RoomInforId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("RoomInforId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.RoomInforId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerId, "CustomerId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+
+
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
